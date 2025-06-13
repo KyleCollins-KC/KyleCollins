@@ -1,0 +1,313 @@
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		
+		<title>Home</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets1/css/main.css" />
+		
+		<noscript><link rel="stylesheet" href="assets1/css/noscript.css" /></noscript>
+
+		<style>
+			#main article .image.fit {
+				display: block;
+				box-sizing: border-box;
+				position: relative;
+				/* overflow: hidden; */  /* IMPORTANT: If you enable this, the scaled image won't overflow
+										   its original bounds, BUT the enlarged box-shadow on hover
+										   WILL LIKELY BE CLIPPED. Test this carefully.
+										   For the full enlarged shadow effect, keep this commented out. */
+		
+				/* --- Variables for the pulse animation --- */
+				--base-shadow-blur: 15px;
+				--base-shadow-color: rgba(128, 0, 128, 0.5);
+		
+				/* Default state values for pulse size */
+				--base-shadow-spread-default: 2px;
+				--pulse-increase-amount-default: 5px;
+		
+				/* "Current" state variables that the animation and hover will use */
+				--current-base-spread: var(--base-shadow-spread-default);
+				--current-pulse-increase: var(--pulse-increase-amount-default);
+		
+				/* Add transition for transform AND our custom properties */
+				transition: transform 0.3s ease-in-out,
+							--current-base-spread 0.3s ease-in-out,
+							--current-pulse-increase 0.3s ease-in-out;
+		
+				/* Initial box-shadow using the "current" state variables */
+				box-shadow: 0 0 var(--base-shadow-blur) var(--current-base-spread) var(--base-shadow-color),
+							0 0 var(--base-shadow-blur) var(--current-base-spread) var(--base-shadow-color) inset;
+		
+				/* Apply the wave/pulse animation */
+				animation: sineWavePulseBorder 3s ease-in-out infinite alternate;
+			}
+		
+			#main article a.image:hover .image.fit {
+				/* Apply image scaling on hover */
+				transform: scale(1.05);
+		
+				/* On hover, update the "current" state variables to make the pulse larger */
+				--current-base-spread: 4px;      /* e.g., A slightly larger resting spread on hover */
+				--current-pulse-increase: 12px;  /* e.g., A much larger increase at pulse peak on hover */
+			}
+		
+			@keyframes sineWavePulseBorder {
+				0% { /* Resting state of the pulse */
+					box-shadow: 0 0 var(--base-shadow-blur) var(--current-base-spread) var(--base-shadow-color),
+								0 0 var(--base-shadow-blur) var(--current-base-spread) var(--base-shadow-color) inset;
+				}
+				50% { /* Peak of the pulse */
+					box-shadow: 0 0 var(--base-shadow-blur) calc(var(--current-base-spread) + var(--current-pulse-increase)) var(--base-shadow-color),
+								0 0 var(--base-shadow-blur) calc(var(--current-base-spread) + var(--current-pulse-increase)) var(--base-shadow-color) inset;
+				}
+				100% { /* Resting state of the pulse */
+					box-shadow: 0 0 var(--base-shadow-blur) var(--current-base-spread) var(--base-shadow-color),
+								0 0 var(--base-shadow-blur) var(--current-base-spread) var(--base-shadow-color) inset;
+				}
+			}
+		</style>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+				<!-- Note: The "styleN" class below should match that of the banner element. -->
+					<header id="header" class="alt style2">
+						
+						<nav>
+							<a href="#menu">Menu</a>
+						</nav>
+					</header>
+
+				<!-- Menu -->
+					<nav id="menu">
+						<ul class="links">
+							<li><a href="landing2.html">My CV</a></li>
+							<li><a href="landing3.html">About me-beyond my CV</a></li>
+							<li><a href="landing4.html">My projects</a></li>
+							<li><a href="landing5.html">Contact me</a></li>
+						</ul>
+						
+					</nav>
+
+				<!-- Banner -->
+				<!-- Note: The "styleN" class below should match that of the header element. -->
+					<section id="banner" class="style2">
+						
+						<div id="particle-container"></div>
+						<div class="inner">
+							<span class="image">
+								<img src="" alt="" />
+							</span>
+							<header class="major">
+								<h1>About Me</h1>
+							</header>
+							
+						</div>
+					</section>
+
+					<div id="main">
+						<article id="about-me-details" class="landing-page-content-article">
+						<div class="row gtr-150 gtr-uniform"> <!-- gtr-50 for medium gutters, gtr-uniform for consistent vertical spacing -->
+							<div class="col-6 col-12-small"> <!-- 50% width on desktop/tablet, 100% on small screens -->
+								<a href="landing2.html" class="image">
+								<span class="image fit"><img src="images1/pic12.jpg" alt="Description of image 1" /></span>
+								</a>
+								<p><b><u>My CV</u></b></p>
+								
+							</div>
+							<div class="col-6 col-12-small">
+								<a href="landing3.html" class="image"> <!-- 50% width on desktop/tablet, 100% on small screens -->
+								<span class="image fit"><img src="images1/pic13.jpg" alt="Description of image 2" /></span>
+								</a>
+								<p><b><u>About me-beyond my CV</u></b></p>
+								
+							</div>
+						</div>
+					
+	
+						<!-- Second Row of 2 Images -->
+						<div class="row gtr-150 gtr-uniform">
+							<div class="col-6 col-12-small">
+								<a href="landing4.html" class="image">
+								<span class="image fit"><img src="images1/pic14.jpg" alt="Description of image 3" /></span>
+								</a>
+								<p><b><u>My personal projects</u></b></p>
+								
+							</div>
+							<div class="col-6 col-12-small">
+								<a href="landing5.html" class="image">
+								<span class="image fit"><img src="images1/pic15.jpg" alt="Description of image 4" /></span>
+								</a>
+								<p><b><u>Contact Me</u></b></p>
+								
+							</div>
+						</div>
+					    
+	
+					</div>
+				
+
+			
+
+				
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets1/js/jquery.min.js"></script>
+			<script src="assets1/js/jquery.scrolly.min.js"></script>
+			<script src="assets1/js/jquery.scrollex.min.js"></script>
+			<script src="assets1/js/browser.min.js"></script>
+			<script src="assets1/js/breakpoints.min.js"></script>
+			<script src="assets1/js/util.js"></script>
+			<script src="assets1/js/main.js"></script>
+
+			<script src="https://cdn.jsdelivr.net/npm/tsparticles@2.9.3/tsparticles.bundle.min.js"></script>
+
+			<!-- Your custom script to initialize particles -->
+			<script>
+				document.addEventListener('DOMContentLoaded', function () {
+					tsParticles.load("particles-js", {
+						fpsLimit: 60,
+						particles: {
+							number: {
+								value: 80, // Number of particles
+								density: {
+									enable: true,
+									value_area: 800
+								}
+							},
+							color: {
+								value: ["#800080", "#9932CC", "#BA55D3", "#DA70D6"] // Array of purple shades
+							},
+							shape: {
+								type: "circle", // Shape of particles
+							},
+							opacity: {
+								value: 1, // Opacity of particles
+								random: true,
+								anim: {
+									enable: true,
+									speed: 0.1,
+									opacity_min: 0.1,
+									sync: false
+								}
+							},
+							size: {
+								value: 5, // Size of particles
+								random: true,
+								anim: {
+									enable: true, // You can enable size animation if you want
+									speed: 10,
+									size_min: 0.1,
+									sync: false
+								}
+								
+							},
+
+							shadow: {
+                            enable: true,
+                            color: "rgba(200, 150, 255, 0.5)",
+                            blur: 10,
+                            offset: {
+                            x: 0,
+                            y: 0
+                                }
+                              },
+							move: {
+								enable: true,
+								speed: 1.5, // Speed of movement
+								direction: "none", // Movement direction (none means random)
+								random: true,
+								straight: false,
+								out_mode: "bounce", // What happens when particles go out of bounds
+								bounce: false,
+								attract: {
+									enable: false,
+									rotateX: 600,
+									rotateY: 1200
+								}
+							},
+							line_linked: { // Lines connecting particles (optional)
+								enable: false, // Set to true if you want connecting lines
+								distance: 150,
+								color: "#ffffff",
+								opacity: 0.4,
+								width: 1
+							}
+						},
+						interactivity: {
+							detect_on: "canvas",
+							events: {
+								onhover: {
+									enable: true, // Enable interactivity on hover
+									mode: "repulse" // "grab", "bubble", "repulse"
+								},
+								onclick: {
+									enable: false, // Enable interactivity on click
+									mode: "push" // "push", "remove", "bubble"
+								},
+								resize: true
+							},
+							modes: {
+								grab: {
+									distance: 140,
+									line_linked: {
+										opacity: 1
+									}
+								},
+								bubble: {
+									distance: 400,
+									size: 40,
+									duration: 2,
+									opacity: 8,
+									speed: 3
+								},
+								repulse: {
+                            distance: 160,          // Good interaction radius
+                            duration: 2.5,          // Longer duration for smoother overall effect
+                            factor: 60,             // Lower strength for a gentler push
+                            speed: 0.8,             // Slower speed of repulsion
+                            maxSpeed: 25,           // Lower max speed for the repulsion effect
+                            easing: "ease-in-out-sine" // Generally one of the smoothest, gentlest curves
+                                                    // "ease-in-out-cubic" is also very good
+                        },
+								push: {
+									particles_nb: 4
+								},
+								remove: {
+									particles_nb: 2
+								}
+							}
+						},
+						detectRetina: true, // For high-resolution displays
+						// You can specify a background for the canvas itself if needed
+						// background: {
+						//  color: "#000000", // e.g., black background for the particle canvas
+						//  image: "",
+						//  position: "50% 50%",
+						//  repeat: "no-repeat",
+						//  size: "cover"
+						// }
+					});
+				});
+			</script>
+			  <script>
+				document.addEventListener('DOMContentLoaded', () => {
+					const imagesToAnimate = document.querySelectorAll('#main article .image.fit');
+		
+					imagesToAnimate.forEach(spanElement => {
+						// Add the class that has the ::before pseudo-element and animation
+						spanElement.classList.add('animated-segment-border'); // Or reuse animated-wipe-border if you replaced it
+					});
+				});
+			</script>
+
+	</body>
+</html>

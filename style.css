@@ -1,0 +1,126 @@
+body {
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #2a2f4a;
+    overflow: hidden;
+    position: relative;
+}
+
+#orbiting-circle {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    /* New gradient background for the "tip of the flame" */
+    background: radial-gradient(circle at center,
+        #FFACEC 30%, /* Lightest pink at the center */
+        #DA70D6 70%, /* Transition to orchid/pink-purple */
+        rgba(153, 50, 204, 0.7) 100% /* Softer edge to blend with glow */
+    );
+    border-radius: 50%;
+    filter: blur(8px); /* Keep some blur */
+    box-shadow: /* Adjust shadow to match new colors */
+        0 0 20px 8px rgba(255, 172, 236, 0.7),  /* Inner, brighter pink glow */
+        0 0 40px 15px rgba(218, 112, 214, 0.5), /* Outer, orchid glow */
+        0 0 60px 25px rgba(153, 50, 204, 0.3);  /* Fainter purple aura */
+    opacity: 0;
+    top: -200px;
+    left: -200px;
+    transition: opacity 0.5s ease-out;
+    z-index: 10;
+}
+
+
+#trail-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 5;
+}
+
+.trail-segment {
+    position: absolute;
+    border-radius: 50%;
+    background-color: rgba(192, 0, 255, 0.6);
+    filter: blur(5px);
+    pointer-events: none;
+}
+
+/* --- New Ripple Styles (Method 1 - Modified for glow and blur) --- */
+.expanding-ripple-scaler {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    pointer-events: none;
+    opacity: 0;
+    transform: scale(0);
+    z-index: 1;
+    /* left/top set by JS to screen center, adjusting for this width/height */
+}
+
+.expanding-ripple-scaler .ring-visual {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    box-sizing: border-box;
+
+    /* 1. Base color/line (using a more saturated purple for the line itself if desired) */
+    /* Option A: Using a background and then a box-shadow line (can be more flexible) */
+    background-color: transparent; /* Or a very faint purple if you want a slight fill */
+    
+    /* 2. The "line" itself, now potentially part of the glow stack or a sharp inner shadow */
+    /* Using a slightly less intense color for the immediate line if the glow is strong */
+    box-shadow: 
+        /* The "line" - keep this relatively sharp */
+        inset 0 0 0 1px rgba(200, 50, 255, 0.9), /* Bright, saturated inner line */
+
+        /* Glow layers - similar to the orbiting circle's glow */
+        /* Outer glow layer (matches the color of the "line" for a cohesive glow) */
+        0 0 4px 1px rgba(200, 50, 255, 0.6),  /* Adjust blur, spread, and opacity */
+        /* More diffuse outer glow layer */
+        0 0 8px 2px rgba(220, 100, 255, 0.4); /* Lighter, more spread out */
+
+    /* 3. Blur the entire visual element to soften everything */
+    filter: blur(1px); /* Start with a small blur, adjust as needed. 
+                          Too much blur will make the thin line disappear. */
+}
+
+/* In style.css (or assets/css/main.css) */
+
+/* Styles for the navigation to be faded in */
+#header nav { /* Target the nav element directly, or #header nav ul if you prefer */
+    opacity: 0; /* Start fully transparent */
+    transition: opacity 0.75s ease-in-out; /* Duration and easing for the fade */
+    /* You can add a transform for a subtle slide-in effect too, e.g.: */
+    /* transform: translateY(10px); */ /* Start slightly down */
+}
+
+#header nav.fade-in-nav {
+    opacity: 1;
+    /* transform: translateY(0); */ /* End at normal position if using transform */
+}
+/* ... (your existing CSS: body, #orbiting-circle, #trail-container, .trail-segment, .expanding-ripple-scaler, .ring-visual) ... */
+
+#particle-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 2; /* Above ripples, below main circle/trail if they overlap */
+}
+
+.particle {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0; /* Start invisible, JS will animate in */
+    pointer-events: none;
+    box-shadow: 0 0 5px 2px rgba(200, 150, 255, 0.5); 
+    /* background-color will be set by JS */
+}
+

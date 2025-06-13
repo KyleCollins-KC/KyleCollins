@@ -1,0 +1,99 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Kyle Collins</title> <!-- Give it a proper title -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+
+    <!-- Portfolio Styles -->
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+
+    <!-- Animated Background Styles -->
+    <link rel="stylesheet" href="style.css"> <!-- Link to your background's CSS -->
+</head>
+<body class="is-preload">
+
+    <!-- Animated Background Elements -->
+    <!-- Place these *before* your main wrapper so they are naturally behind -->
+    <!-- or use z-index to ensure they are behind -->
+    <div id="trail-container"></div>
+    <div id="orbiting-circle"></div>
+    <div id="particle-container"></div>
+
+    <!-- Wrapper (Your Existing Portfolio Content) -->
+    <div id="wrapper">
+        <!-- Header -->
+        <header id="header">
+            <div class="content">
+                <div class="inner">
+                    <h1>Kyle Collins</h1>
+                    
+                    
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="landing1.html">Find out more about me</a></li>
+                   
+                    <!--<li><a href="#elements">Elements</a></li>-->
+                </ul>
+            </nav>
+        </header>
+
+        <!-- Main -->
+        <div id="main">
+            <!-- ... your main content (intro, work, contact articles) ... -->
+        </div>
+
+        <!-- Footer -->
+        <footer id="footer">
+            <!-- ... your footer content ... -->
+        </footer>
+    </div>
+
+    <!-- BG (from your portfolio template - this might be for a static or simpler BG) -->
+    <!-- You might need to decide if you still need this div#bg or if your animated BG replaces it -->
+    <div id="bg"></div>
+
+    <!-- Scripts -->
+    <!-- Portfolio Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+
+    <!-- EmailJS and your custom form script -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script>
+        (function() {
+            emailjs.init("FdoftXmlmESTJgchC");
+        })();
+
+        function sendEmail(event) {
+            event.preventDefault();
+            emailjs.sendForm("service_708sdoq", "template_exo5hja", event.target)
+                .then(() => {
+                    alert("Message sent successfully!");
+                    document.getElementById("contact-form").reset();
+                })
+                .catch((err) => alert("Failed to send message: " + JSON.stringify(err))); // Stringify error for more details
+        }
+        // Ensure this runs after the form is in the DOM
+        document.addEventListener('DOMContentLoaded', () => {
+            const contactForm = document.getElementById("contact-form");
+            if (contactForm) { // Check if form exists before adding listener
+                contactForm.addEventListener("submit", sendEmail);
+            }
+        });
+    </script>
+
+
+			
+
+    <script src="script.js"></script>
+    
+
+</body>
+</html>
